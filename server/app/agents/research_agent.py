@@ -11,6 +11,7 @@ from app.services.web_search import web_search_service_v2
 from app.services.vector_store import VectorStoreService
 from app.crud.conversation import ConversationCRUD, AgentLogCRUD
 from app.schemas.conversation import ConversationCreate, AgentLogCreate
+from app.tools import search_web, retrieve_documents, get_source_url
 
 logger = logging.getLogger(__name__)
 
@@ -134,9 +135,7 @@ Return only the queries, one per line."""
 
             for query in state["search_queries"]:
                 try:
-                    results = await web_search_service_v2.search_and_fetch(
-                        query=query, num_results=3, fetch_content=True
-                    )
+                    results = await search_web(query, num_results=3)
                     all_results.extend(results)
                 except Exception as e:
                     logger.warning(f"Search failed for query '{query}': {str(e)}")
@@ -187,7 +186,7 @@ Return only the queries, one per line."""
             if texts:
                 VectorStoreService.add_documents(texts, metadatas)
 
-            relevant_docs = VectorStoreService.similarity_search(state["query"], k=10)
+            relevant_docs = retrieve_documents(state["query"], k=10)
 
             # If Pinecone returns empty, use search results directly
             if not relevant_docs:
@@ -201,7 +200,7 @@ Return only the queries, one per line."""
             else:
                 relevant_content = "\n\n".join(
                     [
-                        f"Source: {doc.metadata.get('title', 'Unknown')}\n{doc.page_content[:1000]}"
+                        f"Source: {doc.get('title', 'Unknown')}\n{doc.get('content', '')[:1000]}"
                         for doc in relevant_docs
                     ]
                 )
