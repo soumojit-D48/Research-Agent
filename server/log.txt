@@ -1,0 +1,304 @@
+soumo@SoumojitDas MINGW64 ~/OneDrive/Desktop/reseach_agent/server (main)
+$ uvicorn app.main:app --reload
+INFO:     Will watch for changes in these directories: ['C:\\Users\\soumo\\OneDrive\\Desktop\\reseach_agent\\server']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [9100] using StatReload
+INFO:     Started server process [29096]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:64780 - "OPTIONS /api/v1/research/run?query=What%20is%20quantum%20computing%3F&user_id=user_v2jijx4o HTTP/1.1" 200 OK
+2026-03-12 17:15:45,761 - app.agents.research_agent - INFO - Starting research agent for query: What is quantum computing?
+2026-03-12 17:15:48,160 INFO sqlalchemy.engine.Engine select pg_catalog.version()
+2026-03-12 17:15:48,160 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-03-12 17:15:48,164 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-03-12 17:15:48,164 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-12 17:15:49,103 INFO sqlalchemy.engine.Engine select current_schema()
+2026-03-12 17:15:49,103 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-03-12 17:15:49,114 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-03-12 17:15:49,114 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-12 17:15:50,337 INFO sqlalchemy.engine.Engine show standard_conforming_strings
+2026-03-12 17:15:50,337 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-03-12 17:15:50,337 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-03-12 17:15:50,337 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-12 17:15:51,364 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:15:51,364 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:15:51,414 INFO sqlalchemy.engine.Engine INSERT INTO conversations (id, user_id, session_id, messages, metadata, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::JSON, $5::JSON, $6::TIMESTAMP WITHOUT TIME ZONE, $7::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:15:51,414 - sqlalchemy.engine.Engine - INFO - INSERT INTO conversations (id, user_id, session_id, messages, metadata, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::JSON, $5::JSON, $6::TIMESTAMP WITHOUT TIME ZONE, $7::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:15:51,415 INFO sqlalchemy.engine.Engine [generated in 0.00421s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'user_v2jijx4o', 'cf23ea81-5d65-4d1c-9822-49a8e368ea61', '[{"role": "user", "content": "What is quantum computing?"}]', '{}', datetime.datetime(2026, 3, 12, 11, 45, 45, 799203), datetime.datetime(2026, 3, 12, 11, 45, 45, 799213))
+2026-03-12 17:15:51,415 - sqlalchemy.engine.Engine - INFO - [generated in 0.00421s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'user_v2jijx4o', 'cf23ea81-5d65-4d1c-9822-49a8e368ea61', '[{"role": "user", "content": "What is quantum computing?"}]', '{}', datetime.datetime(2026, 3, 12, 11, 45, 45, 799203), datetime.datetime(2026, 3, 12, 11, 45, 45, 799213))
+2026-03-12 17:15:52,240 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:15:52,240 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:15:53,460 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:15:53,460 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:15:53,475 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at 
+FROM conversations 
+WHERE conversations.id = $1::UUID
+2026-03-12 17:15:53,475 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:15:53,479 INFO sqlalchemy.engine.Engine [generated in 0.00342s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'),)
+2026-03-12 17:15:53,479 - sqlalchemy.engine.Engine - INFO - [generated in 0.00342s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'),)
+2026-03-12 17:15:54,241 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:15:54,241 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:15:54,243 INFO sqlalchemy.engine.Engine [generated in 0.00134s] (UUID('8a00bd66-3530-4fb7-b3c8-ffb840317fda'), UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'research', 'initialize', '{"query": "What is quantum computing?"}', 'null', 8441, 'success', datetime.datetime(2026, 3, 12, 11, 45, 54, 239227))
+2026-03-12 17:15:54,243 - sqlalchemy.engine.Engine - INFO - [generated in 0.00134s] (UUID('8a00bd66-3530-4fb7-b3c8-ffb840317fda'), UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'research', 'initialize', '{"query": "What is quantum computing?"}', 'null', 8441, 'success', datetime.datetime(2026, 3, 12, 11, 45, 54, 239227))
+2026-03-12 17:15:54,736 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:15:54,736 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:15:55,706 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:15:55,706 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:15:55,708 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:15:55,708 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:15:55,708 INFO sqlalchemy.engine.Engine [generated in 0.00051s] (UUID('8a00bd66-3530-4fb7-b3c8-ffb840317fda'),)
+2026-03-12 17:15:55,708 - sqlalchemy.engine.Engine - INFO - [generated in 0.00051s] (UUID('8a00bd66-3530-4fb7-b3c8-ffb840317fda'),)
+2026-03-12 17:15:58,300 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:15:58,309 - openai._base_client - INFO - Retrying request to /chat/completions in 0.417765 seconds
+2026-03-12 17:15:58,905 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:15:58,907 - openai._base_client - INFO - Retrying request to /chat/completions in 0.971596 seconds
+2026-03-12 17:16:00,050 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:16:00,060 - app.agents.research_agent - ERROR - Query generation error: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 712.552686ms.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '0s'}]}}]
+2026-03-12 17:16:00,064 - app.agents.research_agent - ERROR - Web search error: 500: All search attempts failed
+2026-03-12 17:16:02,606 - app.services.vector_store - ERROR - Failed to initialize Pinecone: Pinecone API key must be provided in either `pinecone_api_key` or `PINECONE_API_KEY` environment variable
+2026-03-12 17:16:02,609 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:16:02,609 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:16:02,610 INFO sqlalchemy.engine.Engine [cached since 8.368s ago] (UUID('2281e455-759e-4ebf-9f41-df14f93659b5'), UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'research', 'extract_content', '{"num_documents": 0}', '{"relevant_docs": 0}', 2540, 'success', datetime.datetime(2026, 3, 12, 11, 46, 2, 608569))
+2026-03-12 17:16:02,610 - sqlalchemy.engine.Engine - INFO - [cached since 8.368s ago] (UUID('2281e455-759e-4ebf-9f41-df14f93659b5'), UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 'research', 'extract_content', '{"num_documents": 0}', '{"relevant_docs": 0}', 2540, 'success', datetime.datetime(2026, 3, 12, 11, 46, 2, 608569))
+2026-03-12 17:16:02,853 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:16:02,853 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:16:03,818 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:16:03,818 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:16:03,819 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:16:03,819 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:16:03,819 INFO sqlalchemy.engine.Engine [cached since 8.112s ago] (UUID('2281e455-759e-4ebf-9f41-df14f93659b5'),)
+2026-03-12 17:16:03,819 - sqlalchemy.engine.Engine - INFO - [cached since 8.112s ago] (UUID('2281e455-759e-4ebf-9f41-df14f93659b5'),)
+2026-03-12 17:16:04,480 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:16:04,481 - openai._base_client - INFO - Retrying request to /chat/completions in 0.392818 seconds
+2026-03-12 17:16:05,032 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:16:05,034 - openai._base_client - INFO - Retrying request to /chat/completions in 0.902484 seconds
+2026-03-12 17:16:06,105 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-03-12 17:16:06,107 - app.agents.research_agent - ERROR - Report synthesis error: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 54.656675557s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '54s'}]}}]
+2026-03-12 17:16:06,109 - app.agents.research_agent - INFO - Agent result keys: dict_keys(['query', 'user_id', 'conversation_id', 'search_queries', 'search_results', 'relevant_content', 'final_report', 'error'])
+2026-03-12 17:16:06,109 - app.agents.research_agent - INFO - Conversation ID: 58b0c273-1480-45ea-8c1a-b472d9735d1f
+INFO:     127.0.0.1:64780 - "POST /api/v1/research/run?query=What%20is%20quantum%20computing%3F&user_id=user_v2jijx4o HTTP/1.1" 200 OK
+2026-03-12 17:16:06,117 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:16:06,117 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+INFO:     127.0.0.1:61670 - "OPTIONS /api/v1/research/conversations/58b0c273-1480-45ea-8c1a-b472d9735d1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61670 - "OPTIONS /api/v1/research/logs/58b0c273-1480-45ea-8c1a-b472d9735d1f?skip=0&limit=100 HTTP/1.1" 200 OK
+2026-03-12 17:16:16,143 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:16:16,143 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:16:16,166 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at 
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:16:16,166 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:16:16,168 INFO sqlalchemy.engine.Engine [generated in 0.00499s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'),)
+2026-03-12 17:16:16,168 - sqlalchemy.engine.Engine - INFO - [generated in 0.00499s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'),)
+INFO:     127.0.0.1:61670 - "GET /api/v1/research/conversations/58b0c273-1480-45ea-8c1a-b472d9735d1f HTTP/1.1" 200 OK
+2026-03-12 17:16:16,682 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:16:16,682 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-12 17:16:17,218 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:16:17,218 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:16:17,233 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at 
+FROM agent_logs
+WHERE agent_logs.conversation_id = $1::UUID ORDER BY agent_logs.created_at DESC
+ LIMIT $2::INTEGER OFFSET $3::INTEGER
+2026-03-12 17:16:17,233 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.conversation_id = $1::UUID ORDER BY agent_logs.created_at DESC
+ LIMIT $2::INTEGER OFFSET $3::INTEGER
+2026-03-12 17:16:17,236 INFO sqlalchemy.engine.Engine [generated in 0.00282s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 100, 0)
+2026-03-12 17:16:17,236 - sqlalchemy.engine.Engine - INFO - [generated in 0.00282s] (UUID('58b0c273-1480-45ea-8c1a-b472d9735d1f'), 100, 0)
+INFO:     127.0.0.1:59047 - "GET /api/v1/research/logs/58b0c273-1480-45ea-8c1a-b472d9735d1f?skip=0&limit=100 HTTP/1.1" 200 OK
+2026-03-12 17:16:17,997 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:16:17,997 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-12 17:18:05,530 - app.agents.research_agent - INFO - Starting research agent for query: What is quantum computing?
+2026-03-12 17:18:06,602 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:18:06,602 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:18:06,663 INFO sqlalchemy.engine.Engine INSERT INTO conversations (id, user_id, session_id, messages, metadata, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::JSON, $5::JSON, $6::TIMESTAMP WITHOUT TIME ZONE, $7::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:06,663 - sqlalchemy.engine.Engine - INFO - INSERT INTO conversations (id, user_id, session_id, messages, metadata, created_at, updated_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::JSON, $5::JSON, $6::TIMESTAMP WITHOUT TIME ZONE, $7::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:06,667 INFO sqlalchemy.engine.Engine [cached since 135.3s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'user_v2jijx4o', '66917603-2199-4aba-80ea-b4e57bd0dd78', '[{"role": "user", "content": "What is quantum computing?"}]', '{}', datetime.datetime(2026, 3, 12, 11, 48, 5, 707791), datetime.datetime(2026, 3, 12, 11, 48, 5, 707816))
+2026-03-12 17:18:06,667 - sqlalchemy.engine.Engine - INFO - [cached since 135.3s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'user_v2jijx4o', '66917603-2199-4aba-80ea-b4e57bd0dd78', '[{"role": "user", "content": "What is quantum computing?"}]', '{}', datetime.datetime(2026, 3, 12, 11, 48, 5, 707791), datetime.datetime(2026, 3, 12, 11, 48, 5, 707816))
+2026-03-12 17:18:07,198 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:18:07,198 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:18:08,438 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:18:08,438 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:18:08,444 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:18:08,444 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:18:08,444 INFO sqlalchemy.engine.Engine [cached since 135s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'),)
+2026-03-12 17:18:08,444 - sqlalchemy.engine.Engine - INFO - [cached since 135s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'),)
+2026-03-12 17:18:09,191 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:09,191 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:09,192 INFO sqlalchemy.engine.Engine [cached since 135s ago] (UUID('9da995de-a918-4335-b578-c92fcbe44263'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'initialize', '{"query": "What is quantum computing?"}', 'null', 3494, 'success', datetime.datetime(2026, 3, 12, 11, 48, 9, 190311))
+2026-03-12 17:18:09,192 - sqlalchemy.engine.Engine - INFO - [cached since 135s ago] (UUID('9da995de-a918-4335-b578-c92fcbe44263'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'initialize', '{"query": "What is quantum computing?"}', 'null', 3494, 'success', datetime.datetime(2026, 3, 12, 11, 48, 9, 190311))
+2026-03-12 17:18:09,682 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:18:09,682 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:18:10,648 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:18:10,648 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:18:10,649 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:10,649 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:10,650 INFO sqlalchemy.engine.Engine [cached since 134.9s ago] (UUID('9da995de-a918-4335-b578-c92fcbe44263'),)
+2026-03-12 17:18:10,650 - sqlalchemy.engine.Engine - INFO - [cached since 134.9s ago] (UUID('9da995de-a918-4335-b578-c92fcbe44263'),)
+2026-03-12 17:18:12,462 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-12 17:18:25,903 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:25,903 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:25,904 INFO sqlalchemy.engine.Engine [cached since 151.7s ago] (UUID('faac390d-b4c6-4646-9c5b-0874ccf1691e'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'generate_queries', '{"query": "What is quantum computing?"}', '{"queries": ["What is quantum computing and how does it differ from classical computing?", "Explain the basic principles of quantum computing, includ ... (168 characters truncated) ... advancements and challenges in quantum computing technology?", "How do quantum algorithms solve complex problems faster than classical algorithms?"]}', 14764, 'success', datetime.datetime(2026, 3, 12, 11, 48, 25, 903152))
+2026-03-12 17:18:25,904 - sqlalchemy.engine.Engine - INFO - [cached since 151.7s ago] (UUID('faac390d-b4c6-4646-9c5b-0874ccf1691e'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'generate_queries', '{"query": "What is quantum computing?"}', '{"queries": ["What is quantum computing and how does it differ from classical computing?", "Explain the basic principles of quantum computing, includ ... (168 characters truncated) ... advancements and challenges in quantum computing technology?", "How do quantum algorithms solve complex problems faster than classical algorithms?"]}', 14764, 'success', datetime.datetime(2026, 3, 12, 11, 48, 25, 903152))
+2026-03-12 17:18:26,147 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:18:26,147 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:18:27,118 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:18:27,118 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:18:27,120 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:27,120 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:27,120 INFO sqlalchemy.engine.Engine [cached since 151.4s ago] (UUID('faac390d-b4c6-4646-9c5b-0874ccf1691e'),)
+2026-03-12 17:18:27,120 - sqlalchemy.engine.Engine - INFO - [cached since 151.4s ago] (UUID('faac390d-b4c6-4646-9c5b-0874ccf1691e'),)
+2026-03-12 17:18:29,433 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=What+is+quantum+computing+and+how+does+it+differ+from+classical+computing%3F "HTTP/1.1 200 OK"
+2026-03-12 17:18:30,211 - httpx - INFO - HTTP Request: GET https://www.techtarget.com/searchdatacenter/tip/Classical-vs-quantum-computing-What-are-the-differences "HTTP/1.1 200 OK"
+2026-03-12 17:18:30,930 - httpx - INFO - HTTP Request: GET https://www.geeksforgeeks.org/computer-organization-architecture/conventional-computing-vs-quantum-computing/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:32,740 - httpx - INFO - HTTP Request: GET https://www.nist.gov/quantum-information-science/quantum-computing-explained "HTTP/1.1 200 OK"
+2026-03-12 17:18:34,335 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=Explain+the+basic+principles+of+quantum+computing%2C+including+superposition+and+entanglement. "HTTP/1.1 200 OK"
+2026-03-12 17:18:35,090 - httpx - INFO - HTTP Request: GET https://www.geeksforgeeks.org/blogs/introduction-quantum-computing/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:36,151 - httpx - INFO - HTTP Request: GET https://www.britannica.com/technology/How-Do-Quantum-Computers-Work "HTTP/1.1 200 OK"
+2026-03-12 17:18:37,318 - httpx - INFO - HTTP Request: GET https://www.dummies.com/article/technology/computers/what-are-superposition-entanglement-in-quantum-computing-300563/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:38,944 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=What+are+the+potential+applications+of+quantum+computing+in+fields+like+cryptography+and+drug+discovery%3F "HTTP/1.1 200 OK"
+2026-03-12 17:18:40,344 - httpx - INFO - HTTP Request: GET https://www.ijfmr.com/papers/2025/4/50738.pdf "HTTP/1.1 200 OK"
+2026-03-12 17:18:42,216 - httpx - INFO - HTTP Request: GET https://builtin.com/hardware/quantum-computing-applications "HTTP/1.1 200 OK"
+2026-03-12 17:18:44,084 - httpx - INFO - HTTP Request: GET https://www.analyticsinsight.net/quantum-computing-analytics-insight/what-are-real-life-examples-of-quantum-computing "HTTP/1.1 200 OK"
+2026-03-12 17:18:46,007 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=What+are+the+current+advancements+and+challenges+in+quantum+computing+technology%3F "HTTP/1.1 200 OK"
+2026-03-12 17:18:46,653 - httpx - INFO - HTTP Request: GET https://www.forbes.com/sites/drektadang/2025/03/09/recent-breakthroughs-accelerate-the-race-for-quantum-computing/ "HTTP/1.1 403 Forbidden"
+2026-03-12 17:18:46,654 - app.services.web_search - WARNING - Failed to fetch https://www.forbes.com/sites/drektadang/2025/03/09/recent-breakthroughs-accelerate-the-race-for-quantum-computing/: status 403
+2026-03-12 17:18:47,932 - httpx - INFO - HTTP Request: GET https://ide.mit.edu/insights/mit-report-describes-quantum-opportunities-challenges/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:49,828 - httpx - INFO - HTTP Request: GET https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025 "HTTP/1.1 200 OK"
+2026-03-12 17:18:51,806 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=How+do+quantum+algorithms+solve+complex+problems+faster+than+classical+algorithms%3F "HTTP/1.1 200 OK"
+2026-03-12 17:18:53,939 - httpx - INFO - HTTP Request: GET https://www.quantamagazine.org/quantum-speedup-found-for-huge-class-of-hard-problems-20250317/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:55,871 - httpx - INFO - HTTP Request: GET https://www.opensourceforu.com/2026/03/quantum-algorithms-the-future-of-computing/ "HTTP/1.1 200 OK"
+2026-03-12 17:18:57,986 - httpx - INFO - HTTP Request: GET https://www.spinquanta.com/news-detail/top-quantum-computing-algorithms-explained "HTTP/1.1 200 OK"
+2026-03-12 17:18:58,107 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:58,107 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:18:58,108 INFO sqlalchemy.engine.Engine [cached since 183.9s ago] (UUID('73ff8e5d-007c-4445-903c-2ac2fb9d080d'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'web_search', '{"queries": ["What is quantum computing and how does it differ from classical computing?", "Explain the basic principles of quantum computing, includ ... (168 characters truncated) ... advancements and challenges in quantum computing technology?", "How do quantum algorithms solve complex problems faster than classical algorithms?"]}', '{"num_results": 15}', 30255, 'success', datetime.datetime(2026, 3, 12, 11, 48, 58, 106952))
+2026-03-12 17:18:58,108 - sqlalchemy.engine.Engine - INFO - [cached since 183.9s ago] (UUID('73ff8e5d-007c-4445-903c-2ac2fb9d080d'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'web_search', '{"queries": ["What is quantum computing and how does it differ from classical computing?", "Explain the basic principles of quantum computing, includ ... (168 characters truncated) ... advancements and challenges in quantum computing technology?", "How do quantum algorithms solve complex problems faster than classical algorithms?"]}', '{"num_results": 15}', 30255, 'success', datetime.datetime(2026, 3, 12, 11, 48, 58, 106952))
+2026-03-12 17:18:58,351 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:18:58,351 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:18:59,331 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:18:59,331 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:18:59,332 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:59,332 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:18:59,333 INFO sqlalchemy.engine.Engine [cached since 183.6s ago] (UUID('73ff8e5d-007c-4445-903c-2ac2fb9d080d'),)
+2026-03-12 17:18:59,333 - sqlalchemy.engine.Engine - INFO - [cached since 183.6s ago] (UUID('73ff8e5d-007c-4445-903c-2ac2fb9d080d'),)
+2026-03-12 17:19:01,469 - app.services.vector_store - ERROR - Failed to initialize Pinecone: Pinecone API key must be provided in either `pinecone_api_key` or `PINECONE_API_KEY` environment variable
+2026-03-12 17:19:02,974 - app.services.vector_store - ERROR - Failed to initialize Pinecone: Pinecone API key must be provided in either `pinecone_api_key` or `PINECONE_API_KEY` environment variable
+2026-03-12 17:19:03,056 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:19:03,056 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:19:03,061 INFO sqlalchemy.engine.Engine [cached since 188.8s ago] (UUID('eafa78ab-aeaa-41ad-91f0-6b013ab42cb4'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'extract_content', '{"num_documents": 15}', '{"relevant_docs": 15}', 3234, 'success', datetime.datetime(2026, 3, 12, 11, 49, 3, 54853))
+2026-03-12 17:19:03,061 - sqlalchemy.engine.Engine - INFO - [cached since 188.8s ago] (UUID('eafa78ab-aeaa-41ad-91f0-6b013ab42cb4'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'extract_content', '{"num_documents": 15}', '{"relevant_docs": 15}', 3234, 'success', datetime.datetime(2026, 3, 12, 11, 49, 3, 54853))
+2026-03-12 17:19:03,324 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:19:03,324 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:19:04,299 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:19:04,299 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:19:04,301 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:19:04,301 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:19:04,302 INFO sqlalchemy.engine.Engine [cached since 188.6s ago] (UUID('eafa78ab-aeaa-41ad-91f0-6b013ab42cb4'),)
+2026-03-12 17:19:04,302 - sqlalchemy.engine.Engine - INFO - [cached since 188.6s ago] (UUID('eafa78ab-aeaa-41ad-91f0-6b013ab42cb4'),)
+2026-03-12 17:19:06,047 - httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-12 17:19:45,648 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at 
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:45,648 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at 
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:45,660 INFO sqlalchemy.engine.Engine [cached since 209.5s ago] ('a480099c-c5c0-4a46-86cb-1b8f0e770f40',)
+2026-03-12 17:19:45,660 - sqlalchemy.engine.Engine - INFO - [cached since 209.5s ago] ('a480099c-c5c0-4a46-86cb-1b8f0e770f40',)
+2026-03-12 17:19:46,164 INFO sqlalchemy.engine.Engine UPDATE conversations SET messages=$1::JSON, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE conversations.id = $3::UUID
+2026-03-12 17:19:46,164 - sqlalchemy.engine.Engine - INFO - UPDATE conversations SET messages=$1::JSON, updated_at=$2::TIMESTAMP WITHOUT TIME ZONE WHERE conversations.id = $3::UUID
+2026-03-12 17:19:46,180 INFO sqlalchemy.engine.Engine [generated in 0.02770s] ('[{"role": "user", "content": "What is quantum computing?"}, {"role": "assistant", "content": "# Comprehensive Research Report: What is Quantum Comput ... (5034 characters truncated) ... rovide a holistic view of quantum computing\\u2019s current state, potential, and future trajectory.\\n", "timestamp": "2026-03-12T11:49:45.981288"}]', datetime.datetime(2026, 3, 12, 11, 49, 45, 985974), 'a480099c-c5c0-4a46-86cb-1b8f0e770f40')
+2026-03-12 17:19:46,180 - sqlalchemy.engine.Engine - INFO - [generated in 0.02770s] ('[{"role": "user", "content": "What is quantum computing?"}, {"role": "assistant", "content": "# Comprehensive Research Report: What is Quantum Comput ... (5034 characters truncated) ... rovide a holistic view of quantum computing\\u2019s current state, potential, and future trajectory.\\n", "timestamp": "2026-03-12T11:49:45.981288"}]', datetime.datetime(2026, 3, 12, 11, 49, 45, 985974), 'a480099c-c5c0-4a46-86cb-1b8f0e770f40')
+2026-03-12 17:19:46,754 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:19:46,754 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:19:47,755 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:19:47,755 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:19:47,763 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:47,763 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:47,767 INFO sqlalchemy.engine.Engine [cached since 211.6s ago] ('a480099c-c5c0-4a46-86cb-1b8f0e770f40',)
+2026-03-12 17:19:47,767 - sqlalchemy.engine.Engine - INFO - [cached since 211.6s ago] ('a480099c-c5c0-4a46-86cb-1b8f0e770f40',)
+2026-03-12 17:19:48,314 INFO sqlalchemy.engine.Engine INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:19:48,314 - sqlalchemy.engine.Engine - INFO - INSERT INTO agent_logs (id, conversation_id, agent_type, action, input_data, output_data, execution_time, status, created_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::VARCHAR, $5::JSON, $6::JSON, $7::INTEGER, $8::VARCHAR, $9::TIMESTAMP WITHOUT TIME ZONE)
+2026-03-12 17:19:48,317 INFO sqlalchemy.engine.Engine [cached since 234.1s ago] (UUID('84306d9f-ede6-4ddf-9c13-f5800fa26ccd'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'synthesize_report', '{"query": "What is quantum computing?"}', '{"report_length": 4974}', 43501, 'success', datetime.datetime(2026, 3, 12, 11, 49, 48, 302262))
+2026-03-12 17:19:48,317 - sqlalchemy.engine.Engine - INFO - [cached since 234.1s ago] (UUID('84306d9f-ede6-4ddf-9c13-f5800fa26ccd'), UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 'research', 'synthesize_report', '{"query": "What is quantum computing?"}', '{"report_length": 4974}', 43501, 'success', datetime.datetime(2026, 3, 12, 11, 49, 48, 302262))
+2026-03-12 17:19:48,567 INFO sqlalchemy.engine.Engine COMMIT
+2026-03-12 17:19:48,567 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-12 17:19:49,551 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:19:49,551 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:19:49,566 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:19:49,566 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.id = $1::UUID
+2026-03-12 17:19:49,579 INFO sqlalchemy.engine.Engine [cached since 233.9s ago] (UUID('84306d9f-ede6-4ddf-9c13-f5800fa26ccd'),)
+2026-03-12 17:19:49,579 - sqlalchemy.engine.Engine - INFO - [cached since 233.9s ago] (UUID('84306d9f-ede6-4ddf-9c13-f5800fa26ccd'),)
+2026-03-12 17:19:50,123 - app.agents.research_agent - INFO - Agent result keys: dict_keys(['query', 'user_id', 'conversation_id', 'search_queries', 'search_results', 'relevant_content', 'final_report', 'error'])
+2026-03-12 17:19:50,124 - app.agents.research_agent - INFO - Conversation ID: a480099c-c5c0-4a46-86cb-1b8f0e770f40
+INFO:     127.0.0.1:61169 - "POST /api/v1/research/run?query=What%20is%20quantum%20computing%3F&user_id=user_v2jijx4o HTTP/1.1" 200 OK
+2026-03-12 17:19:50,292 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:19:50,292 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+INFO:     127.0.0.1:61169 - "OPTIONS /api/v1/research/conversations/a480099c-c5c0-4a46-86cb-1b8f0e770f40 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61169 - "OPTIONS /api/v1/research/logs/a480099c-c5c0-4a46-86cb-1b8f0e770f40?skip=0&limit=100 HTTP/1.1" 200 OK
+2026-03-12 17:19:54,225 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:19:54,225 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:19:54,227 INFO sqlalchemy.engine.Engine SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:54,227 - sqlalchemy.engine.Engine - INFO - SELECT conversations.id, conversations.user_id, conversations.session_id, conversations.messages, conversations.metadata, conversations.created_at, conversations.updated_at
+FROM conversations
+WHERE conversations.id = $1::UUID
+2026-03-12 17:19:54,246 INFO sqlalchemy.engine.Engine [cached since 218.1s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'),)
+2026-03-12 17:19:54,246 - sqlalchemy.engine.Engine - INFO - [cached since 218.1s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'),)
+2026-03-12 17:19:54,277 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-03-12 17:19:54,277 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-12 17:19:54,284 INFO sqlalchemy.engine.Engine SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.conversation_id = $1::UUID ORDER BY agent_logs.created_at DESC
+ LIMIT $2::INTEGER OFFSET $3::INTEGER
+2026-03-12 17:19:54,284 - sqlalchemy.engine.Engine - INFO - SELECT agent_logs.id, agent_logs.conversation_id, agent_logs.agent_type, agent_logs.action, agent_logs.input_data, agent_logs.output_data, agent_logs.execution_time, agent_logs.status, agent_logs.created_at
+FROM agent_logs
+WHERE agent_logs.conversation_id = $1::UUID ORDER BY agent_logs.created_at DESC
+ LIMIT $2::INTEGER OFFSET $3::INTEGER
+2026-03-12 17:19:54,290 INFO sqlalchemy.engine.Engine [cached since 217.1s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 100, 0)
+2026-03-12 17:19:54,290 - sqlalchemy.engine.Engine - INFO - [cached since 217.1s ago] (UUID('a480099c-c5c0-4a46-86cb-1b8f0e770f40'), 100, 0)
+INFO:     127.0.0.1:61169 - "GET /api/v1/research/conversations/a480099c-c5c0-4a46-86cb-1b8f0e770f40 HTTP/1.1" 200 OK
+2026-03-12 17:19:54,778 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:19:54,778 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+INFO:     127.0.0.1:50060 - "GET /api/v1/research/logs/a480099c-c5c0-4a46-86cb-1b8f0e770f40?skip=0&limit=100 HTTP/1.1" 200 OK
+2026-03-12 17:19:54,793 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-03-12 17:19:54,793 - sqlalchemy.engine.Engine - INFO - ROLLBACK
