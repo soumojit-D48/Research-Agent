@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
+from typing import List, Optional
 import uuid
 
 from app.db.session import get_db
@@ -26,7 +26,13 @@ router = APIRouter(prefix="/research", tags=["research"])
 
 
 @router.post("/run", response_model=dict)
-async def run_research(query: str, user_id: str, db: AsyncSession = Depends(get_db)):
+async def run_research(
+    query: str,
+    user_id: str,
+    x_provider: Optional[str] = Header(None, alias="X-Provider"),
+    x_api_key: Optional[str] = Header(None, alias="X-Api-Key"),
+    db: AsyncSession = Depends(get_db),
+):
     """Run research agent with full error handling"""
     try:
         if not query or not query.strip():
@@ -35,7 +41,7 @@ async def run_research(query: str, user_id: str, db: AsyncSession = Depends(get_
         if not user_id or not user_id.strip():
             raise ValidationException("User ID is required")
 
-        agent = ResearchAgentV3(db)
+        agent = ResearchAgentV3(db, provider=x_provider, user_api_key=x_api_key)
         result = await agent.run(query, user_id)
 
         return {

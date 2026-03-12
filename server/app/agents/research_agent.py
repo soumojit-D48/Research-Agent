@@ -1,4 +1,4 @@
-from typing import TypedDict, List
+from typing import TypedDict, List, Optional
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -15,6 +15,25 @@ from app.tools import search_web, retrieve_documents, get_source_url
 
 logger = logging.getLogger(__name__)
 
+PROVIDER_CONFIG = {
+    "openrouter": {
+        "base_url": "https://openrouter.ai/api/v1",
+        "default_model": "nvidia/nemotron-nano-12b-v2-vl:free",
+    },
+    "openai": {
+        "base_url": "https://api.openai.com/v1",
+        "default_model": "gpt-4o-mini",
+    },
+    "grok": {
+        "base_url": "https://api.x.ai/v1",
+        "default_model": "grok-2-1212",
+    },
+    "gemini": {
+        "base_url": "https://generativelanguage.googleapis.com/v1beta",
+        "default_model": "gemini-2.0-flash",
+    },
+}
+
 
 class ResearchState(TypedDict):
     query: str
@@ -28,12 +47,23 @@ class ResearchState(TypedDict):
 
 
 class ResearchAgentV3:
-    def __init__(self, db: AsyncSession):
+    def __init__(
+        self,
+        db: AsyncSession,
+        provider: Optional[str] = None,
+        user_api_key: Optional[str] = None,
+    ):
         self.db = db
+        self.provider = provider or "openrouter"
+
+        config = PROVIDER_CONFIG.get(self.provider, PROVIDER_CONFIG["openrouter"])
+
+        api_key = user_api_key if user_api_key else settings.OPENROUTER_API_KEY
+
         self.llm = ChatOpenAI(
-            openai_api_base="https://openrouter.ai/api/v1",
-            openai_api_key=settings.OPENROUTER_API_KEY,
-            model_name="nvidia/nemotron-nano-12b-v2-vl:free",
+            openai_api_base=config["base_url"],
+            openai_api_key=api_key,
+            model_name=config["default_model"],
             temperature=0.7,
         )
         self.graph = self._create_graph()
